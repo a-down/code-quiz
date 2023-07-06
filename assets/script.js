@@ -1,5 +1,6 @@
 // global variables
 var mainEl = document.querySelector("main");
+var buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;"
 
 
 
@@ -14,8 +15,7 @@ var mainEl = document.querySelector("main");
 // }
 
 
-// function for adding any elements I need
-
+// function to add elements to the DOM
 function addElement(element, textContent, appendLocation, styling) {
   var newEl = document.createElement(element);
   newEl.textContent = textContent;
@@ -23,21 +23,33 @@ function addElement(element, textContent, appendLocation, styling) {
   appendLocation.appendChild(newEl);
 }
 
-addElement(
-  "p", 
-  "This is new!", 
-  mainEl,
-  "font-weight: 90px;",
-  );
 
 // add text for page greeting
-  // create elements (styling in addElementFunction)
-  // update text content for those elements
+addElement(
+  "h2", 
+  "Welcome to the quiz!", 
+  mainEl,
+  "font-size: 24px; font-weight: 700; text-align: center;",
+  );
 
+addElement(
+  "p",
+  "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
+  mainEl, 
+  "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",
+)
 
 
 // add buttton to start the quiz (style all buttons in CSS)
+addElement(
+  "button",
+  "Start",
+  mainEl,
+  buttonStyling,
+)
 
+
+// remove previous elements
 
 
 
