@@ -25,7 +25,7 @@ function addElement(element, textContent, appendLocation, styling) {
 
 
 // add text for page greeting
-addElement(
+var introTitle = addElement(
   "h2", 
   "Welcome to the quiz!", 
   mainEl,
@@ -47,6 +47,8 @@ addElement(
   mainEl,
   buttonStyling,
 )
+
+introTitle.remove();
 
 
 // remove previous elements
