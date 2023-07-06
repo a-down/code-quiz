@@ -1,22 +1,38 @@
 // global variables
-
+var mainEl = document.querySelector("main");
 
 
 
 // global objects (questions) - test this with 2 questions, so it is quicker to run through the whole thing!
 
-objectExample = {
-  choice-a: example,
-  choice-a: example,
-  choice-a: example,
-  choice-a: example,
-  correct-answer: example,
+// objectExample = {
+//   choice-a: example,
+//   choice-a: example,
+//   choice-a: example,
+//   choice-a: example,
+//   correct-answer: example,
+// }
+
+
+// function for adding any elements I need
+
+function addElement(element, textContent, appendLocation, styling) {
+  var newEl = document.createElement(element);
+  newEl.textContent = textContent;
+  newEl.setAttribute("style", styling);
+  appendLocation.appendChild(newEl);
 }
 
-
+addElement(
+  "p", 
+  "This is new!", 
+  mainEl,
+  "font-weight: 90px;",
+  );
 
 // add text for page greeting
-
+  // create elements (styling in addElementFunction)
+  // update text content for those elements
 
 
 
