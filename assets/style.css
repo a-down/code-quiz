@@ -33,4 +33,23 @@ main {
   background-color: white;
   height: 300px;
   margin: 20% 20% auto 20%;
+  position: relative;
+}
+
+main div {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  border-radius: 100%;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: lightcoral;
+}
+
+.timer {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 13px;
 }
