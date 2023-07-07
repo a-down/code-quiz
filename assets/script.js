@@ -6,7 +6,7 @@ const introEl = document.querySelector(".intro-div");
 const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
 let displayTime = document.querySelector(".timer");
-let timeLeft = 90;
+let timeLeft = 10;
 let userInitials
 let scoreStringify
 let scoreFromStorage
@@ -107,8 +107,9 @@ function startTimer(){
   timerInterval = setInterval(function() {
     timeLeft--;
     displayTime.textContent = timeLeft + "";
-    if(timeLeft === 0) {
+    if(timeLeft <= 0) {
       clearInterval(timerInterval);
+      displayTime.textContent = 0;
       saveScore();
     }
   }, 1000);
@@ -141,7 +142,7 @@ function addQuestion() {
   addElement("p", questionBank[i].optionB, questionEl, multipleChoiceStyling,)
   addElement("p", questionBank[i].optionC, questionEl, multipleChoiceStyling,)
   addElement("p", questionBank[i].optionD, questionEl, multipleChoiceStyling,)
-}
+}}
 
 
 // this function shows the current score at the bottom of main after answering a question
@@ -194,12 +195,12 @@ questionEl.addEventListener("click", function(click) {
     showIncorrectResult();
     showScore();
     saveScore();
-}}})
+}}});
 
 
 // this loads the page where you enter your initials and the score is saved to the local storage.
 function saveScore() {
-  if (i === questionBank.length) {
+  if (i === questionBank.length || timeLeft === 0) {
   questionEl.textContent = "";
   console.log("no more");
   addElement(
@@ -234,7 +235,7 @@ function saveScore() {
     "margin: 25px 30% auto 30%; background-color: white; text-align: center; border: 3px solid #F08080; border-radius: 5%;",
   )
   createSaveButton();
-}}}
+}}
 
 
 // this function creates the save button, runs when the save score screen loads
