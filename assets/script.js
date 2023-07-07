@@ -2,6 +2,8 @@
 i = 0;
 score = 0;
 var mainEl = document.querySelector("main");
+var introEl = document.querySelector(".intro-div");
+var questionEl = document.querySelector(".question-div");
 var buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;"
 
 
@@ -29,36 +31,42 @@ var questionBank = [
 
 
 function addQuestion() {
+  console.log("i:"+ i);
+  console.log("length:" + questionBank.length);
+  if (i === questionBank.length) {
+    console.log("out of questions");        // THIS IS WHERE YOU TRIGGER PULLING UP THE NEXT PAGE
+  } else {
   addElement(
     "h3",
     questionBank[i].question,
-    mainEl,
-    "font-size: 16px; font-weight: 600; text-align: left; margin: 20px 20px auto 5%;",
+    questionEl,
+    "font-size: 16px; font-weight: 600; text-align: left; margin: 20px 40px auto 5%;",
   )
   addElement(
     "p",
     questionBank[i].optionA,
-    mainEl,
+    questionEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
   addElement(
     "p",
     questionBank[i].optionB,
-    mainEl,
+    questionEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
   addElement(
     "p",
     questionBank[i].optionC,
-    mainEl,
+    questionEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
   addElement(
     "p",
     questionBank[i].optionD,
-    mainEl,
+    questionEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
+}
 }
 
 
@@ -82,10 +90,11 @@ function removeElement(element) {
 
 // introduction page
 // intro title
+questionEl.setAttribute("style", "display: none;")
 addElement(
   "h2", 
   "Welcome to the quiz!", 
-  mainEl,
+  introEl,
   "font-size: 24px; font-weight: 700; text-align: center;",
   );
 
@@ -93,14 +102,14 @@ addElement(
 addElement(
   "p",
   "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
-  mainEl, 
+  introEl, 
   "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
 
 // button to start quiz
 addElement(
   "button",
   "Start",
-  mainEl,
+  introEl,
   buttonStyling,
 )
 
@@ -109,9 +118,12 @@ var startButton = document.querySelector("main button");
 
 // function to remove intro elements
 function removeIntroElements() {
-  removeElement("h2");
-  removeElement("main p");
-  removeElement("button");
+  // removeElement("h2");
+  // removeElement("main p");
+  // removeElement("button");
+  introEl.textContent = "";
+  questionEl.setAttribute("style", "display: block")
+  
 }
 
 // remove intro elements
@@ -121,37 +133,24 @@ startButton.addEventListener("click", function() {
 }
 )
 
-mainEl.addEventListener("click", function(click) {
+questionEl.addEventListener("click", function(click) {
   var element = click.target;
   var correct = questionBank[i].correctAnswer;
+  i++;
+  questionEl.textContent = "";
+  addQuestion();
 
   if (element.textContent == correct) {
-    console.log("hooray!");
+    console.log("good");
     score++;
-    i++;
-    console.log(score);
-    console.log(i);
-
-    clearQuestion();
-    addQuestion();
+    console.log("score:" + score);
   } else {
-    console.log("oh no...");
-    i++;
-    onsole.log(score);
-    console.log(i);
-
-    clearQuestion();
-    addQuestion();
-  }
+    console.log("bad");
+    console.log("score:" + score);
+}
 })
 
-function clearQuestion() {
-  removeElement("h3");
-  removeElement("main p");
-  removeElement("main p");
-  removeElement("main p");
-  removeElement("main p");
-}
+
 
 
 
