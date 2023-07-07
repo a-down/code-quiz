@@ -6,6 +6,7 @@ const introEl = document.querySelector(".intro-div");
 const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
 let userInitials
+let scoreStringify
 
 // styling variables
 const multipleChoiceStyling = "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 40px auto 5%;";
@@ -151,6 +152,7 @@ questionEl.addEventListener("click", function(click) {
     saveScore();
 }}})
 
+
 // this loads the page where you enter your initials and the score is saved to the local storage.
 function saveScore() {
   if (i === questionBank.length) {
@@ -190,6 +192,8 @@ function saveScore() {
   createSaveButton();
 }}}
 
+
+// this function creates the save button, runs when the save score screen loads
 function createSaveButton() {
   var saveButton = document.querySelector(".save-div button");
   var initialsInput = document.querySelector(".save-div input");
@@ -198,8 +202,30 @@ function createSaveButton() {
     event.preventDefault();
     console.log(initialsInput.value);
     userInitials = initialsInput.value;
+    saveUserScore();
   })
 }
+
+var userScoreArray = []
+
+function saveUserScore() {
+  // push initials into array
+  userScoreArray.push(userInitials);
+  // push score into array
+  userScoreArray.push(score);
+  console.log(userScoreArray);
+
+  // JSON the array
+  scoreStringify = JSON.stringify(userScoreArray);
+  console.log(scoreStringify);
+  // save the JSON in local storage
+  localStorage.setItem("userScore", scoreStringify);
+}
+
+
+
+
+
 
 
 
