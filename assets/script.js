@@ -83,14 +83,12 @@ addElement(
   "font-size: 24px; font-weight: 700; text-align: center;",
   );
 
-
 // create intro paragraph
 addElement(
   "p",
   "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
   introEl, 
   "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
-
 
 // create button to start quiz
 addElement(
@@ -101,8 +99,11 @@ addElement(
 )
 
 
+// creates start button
 var startButton = document.querySelector(".intro-div button");
 
+
+// starts the timer when the start button is clicked
 function startTimer(){
   timerInterval = setInterval(function() {
     timeLeft--;
@@ -116,7 +117,7 @@ function startTimer(){
 }
 
 
-// clear intro elements
+// start button - 1. clear intro text 2. add question to page 3. starts the timer
 startButton.addEventListener("click", function() {
   introEl.textContent = "";
   questionEl.setAttribute("style", "display: block");
