@@ -30,6 +30,57 @@ var questionBank = [
 
 
 
+// function to add elements to the DOM
+function addElement(element, textContent, appendLocation, styling) {
+  var newEl = document.createElement(element);
+  newEl.textContent = textContent;
+  newEl.setAttribute("style", styling);
+  appendLocation.appendChild(newEl);
+}
+
+// function to remove elements from the DOM
+function removeElement(element) {
+  var removedElement = document.querySelector(element)
+  removedElement.remove();
+}
+
+
+// introduction page
+// create intro title
+questionEl.setAttribute("style", "display: none;")
+addElement(
+  "h2", 
+  "Welcome to the quiz!", 
+  introEl,
+  "font-size: 24px; font-weight: 700; text-align: center;",
+  );
+
+// create intro paragraph
+addElement(
+  "p",
+  "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
+  introEl, 
+  "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
+
+// create button to start quiz
+addElement(
+  "button",
+  "Start",
+  introEl,
+  buttonStyling,
+)
+
+var startButton = document.querySelector(".intro-div button");
+
+// clear intro elements
+startButton.addEventListener("click", function() {
+  introEl.textContent = "";
+  questionEl.setAttribute("style", "display: block");
+  addQuestion();
+}
+)
+
+// create the elements for the quiz questions
 function addQuestion() {
   console.log("i:"+ i);
   console.log("length:" + questionBank.length);
@@ -69,77 +120,16 @@ function addQuestion() {
 }
 }
 
-
-// functions to be called throughout
-// function to add elements to the DOM
-function addElement(element, textContent, appendLocation, styling) {
-  var newEl = document.createElement(element);
-  newEl.textContent = textContent;
-  newEl.setAttribute("style", styling);
-  appendLocation.appendChild(newEl);
-}
-
-// function to remove elements from the DOM
-function removeElement(element) {
-  var removedElement = document.querySelector(element)
-  removedElement.remove();
-}
-
-
-
-
-// introduction page
-// intro title
-questionEl.setAttribute("style", "display: none;")
-addElement(
-  "h2", 
-  "Welcome to the quiz!", 
-  introEl,
-  "font-size: 24px; font-weight: 700; text-align: center;",
-  );
-
-// intro paragraph
-addElement(
-  "p",
-  "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
-  introEl, 
-  "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
-
-// button to start quiz
-addElement(
-  "button",
-  "Start",
-  introEl,
-  buttonStyling,
-)
-
-// variable for start button
-var startButton = document.querySelector("main button");
-
-// function to remove intro elements
-function removeIntroElements() {
-  // removeElement("h2");
-  // removeElement("main p");
-  // removeElement("button");
-  introEl.textContent = "";
-  questionEl.setAttribute("style", "display: block")
-  
-}
-
-// remove intro elements
-startButton.addEventListener("click", function() {
-  removeIntroElements();
-  addQuestion();
-}
-)
-
+// when you click on your choice, this functions determines if you get a point or not
 questionEl.addEventListener("click", function(click) {
   var element = click.target;
   var correct = questionBank[i].correctAnswer;
   i++;
   questionEl.textContent = "";
+  // it loops back to load the next question
   addQuestion();
 
+  // scoring happens as the next question loads
   if (element.textContent == correct) {
     console.log("good");
     score++;
@@ -157,12 +147,11 @@ questionEl.addEventListener("click", function(click) {
 
 
 
-// console.log(document.body.children[1].children[2])
+
+
+// ORIGINAL THOUGHT PROCESS
 
 // code that creates elements to add the questions and answers to <main>, runs after the button is clicked
-
-
-
 
 // eventListener for main to determine which answer they click on 
 
@@ -170,14 +159,7 @@ questionEl.addEventListener("click", function(click) {
     // If correct, give a correct message and add to their score. 
     // If incorrect, give an incorrect message and delete from their score, and take time off of the timer.
 
-
-
-
-
 // game is over when the time reaches 0 or when all the questions are answered
-
-  
-
 
 // page tells them their scores, has them enter their initials
 
