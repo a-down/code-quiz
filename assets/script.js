@@ -7,12 +7,16 @@ const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
 let userInitials
 let scoreStringify
+let scoreFromStorage
+let userScoreObject
+var previousScores
+var scoreHistory
+
 
 // styling variables
 const multipleChoiceStyling = "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 40px auto 5%;";
 const buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;";
 const resultStyling = "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;";
-
 
 
 // global objects (questions) - test this with 2 questions, so it is quicker to run through the whole thing!
@@ -36,6 +40,19 @@ var questionBank = [
 ]
 
 
+// function to get previous scores
+function getPreviousScores() {
+  previousScores = JSON.parse(localStorage.getItem("userScore"));
+  scoreHistory = []
+  if (previousScores !== null) {
+    scoreHistory.push(previousScores);
+    console.log(scoreHistory);
+  } else {
+  console.log(scoreHistory);
+  }
+}
+getPreviousScores();
+
 
 // function to add elements to the DOM
 function addElement(element, textContent, appendLocation, styling) {
@@ -44,6 +61,7 @@ function addElement(element, textContent, appendLocation, styling) {
   newEl.setAttribute("style", styling);
   appendLocation.appendChild(newEl);
 }
+
 
 // function to remove elements from the DOM
 function removeElement(element) {
@@ -62,12 +80,14 @@ addElement(
   "font-size: 24px; font-weight: 700; text-align: center;",
   );
 
+
 // create intro paragraph
 addElement(
   "p",
   "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
   introEl, 
   "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
+
 
 // create button to start quiz
 addElement(
@@ -76,6 +96,7 @@ addElement(
   introEl,
   buttonStyling,
 )
+
 
 var startButton = document.querySelector(".intro-div button");
 
@@ -106,6 +127,8 @@ function addQuestion() {
   addElement("p", questionBank[i].optionD, questionEl, multipleChoiceStyling,)
 }
 
+
+// this function shows the current score at the bottom of main after answering a question
 function showScore() {
   addElement(
     "p",
@@ -115,10 +138,14 @@ function showScore() {
   );
 }
 
+
+// show correct message if applicable
 function showCorrectResult() {
   addElement("h6", "Correct!", questionEl, resultStyling,)
 }
 
+
+// shows incorrect message if applicable
 function showIncorrectResult() {
   addElement("h6", "Incorrect...", questionEl, resultStyling,)
 }
@@ -206,18 +233,18 @@ function createSaveButton() {
   })
 }
 
-var userScoreArray = []
-
+// when the save button is clicked, the user score is saved to local storage
 function saveUserScore() {
-  // push initials into array
-  userScoreArray.push(userInitials);
-  // push score into array
-  userScoreArray.push(score);
-  console.log(userScoreArray);
+  userScoreObject = {
+    name: userInitials,
+    score: score,
+  }
 
-  // JSON the array
-  scoreStringify = JSON.stringify(userScoreArray);
+  scoreHistory.push(userScoreObject);
+
+  scoreStringify = JSON.stringify(scoreHistory);
   console.log(scoreStringify);
+  
   // save the JSON in local storage
   localStorage.setItem("userScore", scoreStringify);
 }
