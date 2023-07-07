@@ -5,12 +5,15 @@ const mainEl = document.querySelector("main");
 const introEl = document.querySelector(".intro-div");
 const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
+let displayTime = document.querySelector(".timer");
+let timeLeft = 90;
 let userInitials
 let scoreStringify
 let scoreFromStorage
 let userScoreObject
 var previousScores
 var scoreHistory
+var timerInterval
 
 
 // styling variables
@@ -100,11 +103,24 @@ addElement(
 
 var startButton = document.querySelector(".intro-div button");
 
+function startTimer(){
+  timerInterval = setInterval(function() {
+    timeLeft--;
+    displayTime.textContent = timeLeft + "";
+    if(timeLeft === 0) {
+      clearInterval(timerInterval);
+      saveScore();
+    }
+  }, 1000);
+}
+
+
 // clear intro elements
 startButton.addEventListener("click", function() {
   introEl.textContent = "";
   questionEl.setAttribute("style", "display: block");
   addQuestion();
+  startTimer();
 }
 )
 
@@ -173,6 +189,7 @@ questionEl.addEventListener("click", function(click) {
     saveScore();
   } else {
     console.log("bad");
+    timeLeft = timeLeft - 10;
     console.log("score:" + score);
     showIncorrectResult();
     showScore();
@@ -231,6 +248,11 @@ function createSaveButton() {
     userInitials = initialsInput.value;
     saveUserScore();
   })
+
+  if (timeLeft !== 0) {
+    displayTime.textContent = 0;
+    clearInterval(timerInterval);
+  }
 }
 
 // when the save button is clicked, the user score is saved to local storage
