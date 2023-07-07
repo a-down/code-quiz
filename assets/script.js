@@ -1,23 +1,66 @@
 // global variables
+i = 0;
 var mainEl = document.querySelector("main");
 var buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;"
 
 
 
 // global objects (questions) - test this with 2 questions, so it is quicker to run through the whole thing!
+var questionBank = [
+  {
+    question: "What coding language creates the visual components of a webpage?",
+    optionA: "CSS",
+    optionB: "HTML",
+    optionC: "JavaScript",
+    optionD: "Git",
+    correctAnswer: "CSS",
+  },
+  {
+    question: "What tool allows developers to check their code with console logs?",
+    optionA: "VS Code",
+    optionB: "GitHub",
+    optionC: "Developer Console",
+    optionD: "Terminal",
+    correctAnswer: "Developer Console",
+  }
+]
 
-var question1 = {
-  question: "What coding language creates the visual components of a webpage?",
-  optionA: "CSS",
-  optionB: "HTML",
-  optionC: "JavaScript",
-  optionD: "Git",
-  correctAnswer: "CSS",
-}
+
 
 function askAQuestion() {
-  
+  addElement(
+    "h3",
+    questionBank[i].question,
+    mainEl,
+    "font-size: 16px; font-weight: 600; text-align: left; margin: 20px 20px auto 5%;",
+  )
+  addElement(
+    "p",
+    "A. " + questionBank[i].optionA,
+    mainEl,
+    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
+  )
+  addElement(
+    "p",
+    "B. " + questionBank[i].optionB,
+    mainEl,
+    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
+  )
+  addElement(
+    "p",
+    "C. " + questionBank[i].optionC,
+    mainEl,
+    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
+  )
+  addElement(
+    "p",
+    "D. " + questionBank[i].optionD,
+    mainEl,
+    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
+  )
+  i ++;
 }
+
 
 
 
@@ -27,60 +70,65 @@ function askAQuestion() {
 
 
 // functions to be called throughout
-  // function to add elements to the DOM
-  function addElement(element, textContent, appendLocation, styling) {
-    var newEl = document.createElement(element);
-    newEl.textContent = textContent;
-    newEl.setAttribute("style", styling);
-    appendLocation.appendChild(newEl);
-  }
+// function to add elements to the DOM
+function addElement(element, textContent, appendLocation, styling) {
+  var newEl = document.createElement(element);
+  newEl.textContent = textContent;
+  newEl.setAttribute("style", styling);
+  appendLocation.appendChild(newEl);
+}
 
-  // function to remove elements from the DOM
-  function removeElement(element) {
-    var removedElement = document.querySelector(element)
-    removedElement.remove();
-  }
-
-  // function to remove intro elements
-  function removeIntroElements() {
-    removeElement("h2");
-    removeElement("main p");
-    removeElement("button");
-  }
+// function to remove elements from the DOM
+function removeElement(element) {
+  var removedElement = document.querySelector(element)
+  removedElement.remove();
+}
 
 
 
-// add elements for page greeting
-  // intro title
-  addElement(
-    "h2", 
-    "Welcome to the quiz!", 
-    mainEl,
-    "font-size: 24px; font-weight: 700; text-align: center;",
-    );
 
-  // intro paragraph
-  addElement(
-    "p",
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
-    mainEl, 
-    "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
+// introduction page
+// intro title
+addElement(
+  "h2", 
+  "Welcome to the quiz!", 
+  mainEl,
+  "font-size: 24px; font-weight: 700; text-align: center;",
+  );
 
-  // button to start quiz
-  addElement(
-    "button",
-    "Start",
-    mainEl,
-    buttonStyling,
-  )
+// intro paragraph
+addElement(
+  "p",
+  "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
+  mainEl, 
+  "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
 
-  var startButton = document.querySelector("button");
+// button to start quiz
+addElement(
+  "button",
+  "Start",
+  mainEl,
+  buttonStyling,
+)
+
+// variable for start button
+var startButton = document.querySelector("main button");
+
+// function to remove intro elements
+function removeIntroElements() {
+  removeElement("h2");
+  removeElement("main p");
+  removeElement("button");
+}
 
 // remove intro elements
 startButton.addEventListener("click", function() {
   removeIntroElements();
+  askAQuestion();
 }
 )
+
+
 
 
 
