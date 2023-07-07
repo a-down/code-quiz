@@ -1,5 +1,6 @@
 // global variables
 i = 0;
+score = 0;
 var mainEl = document.querySelector("main");
 var buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;"
 
@@ -59,24 +60,6 @@ function addQuestion() {
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
 }
-
-mainEl.addEventListener("click", function(click) {
-  var element = click.target;
-  var correct = questionBank[i].correctAnswer;
-
-  if (element.textContent == correct) {
-    console.log("hooray!")
-  }
-  
-  // if (element === questionBank[i].correctAnswer) {
-  //   console.log("hooray!");
-  // }
-})
-
-
-
-
-// i++  ?????????
 
 
 // functions to be called throughout
@@ -138,7 +121,37 @@ startButton.addEventListener("click", function() {
 }
 )
 
+mainEl.addEventListener("click", function(click) {
+  var element = click.target;
+  var correct = questionBank[i].correctAnswer;
 
+  if (element.textContent == correct) {
+    console.log("hooray!");
+    score++;
+    i++;
+    console.log(score);
+    console.log(i);
+
+    clearQuestion();
+    addQuestion();
+  } else {
+    console.log("oh no...");
+    i++;
+    onsole.log(score);
+    console.log(i);
+
+    clearQuestion();
+    addQuestion();
+  }
+})
+
+function clearQuestion() {
+  removeElement("h3");
+  removeElement("main p");
+  removeElement("main p");
+  removeElement("main p");
+  removeElement("main p");
+}
 
 
 
