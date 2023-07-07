@@ -1,10 +1,14 @@
 // global variables
 i = 0;
 score = 0;
-var mainEl = document.querySelector("main");
-var introEl = document.querySelector(".intro-div");
-var questionEl = document.querySelector(".question-div");
-var buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;"
+const mainEl = document.querySelector("main");
+const introEl = document.querySelector(".intro-div");
+const questionEl = document.querySelector(".question-div");
+
+// styling variable
+const multipleChoiceStyling = "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 40px auto 5%;";
+const buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;";
+const resultStyling = "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;";
 
 
 
@@ -93,30 +97,10 @@ function addQuestion() {
     questionEl,
     "font-size: 16px; font-weight: 600; text-align: left; margin: 20px 40px auto 5%;",
   )
-  addElement(
-    "p",
-    questionBank[i].optionA,
-    questionEl,
-    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
-  )
-  addElement(
-    "p",
-    questionBank[i].optionB,
-    questionEl,
-    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
-  )
-  addElement(
-    "p",
-    questionBank[i].optionC,
-    questionEl,
-    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
-  )
-  addElement(
-    "p",
-    questionBank[i].optionD,
-    questionEl,
-    "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
-  )
+  addElement("p", questionBank[i].optionA, questionEl, multipleChoiceStyling,)
+  addElement("p", questionBank[i].optionB, questionEl, multipleChoiceStyling,)
+  addElement("p", questionBank[i].optionC, questionEl, multipleChoiceStyling,)
+  addElement("p", questionBank[i].optionD, questionEl, multipleChoiceStyling,)
 }
 }
 
@@ -130,21 +114,11 @@ function showScore() {
 }
 
 function showCorrectResult() {
-  addElement(
-    "h6",
-    "Correct!",
-    questionEl,
-    "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;",
-  )
+  addElement("h6", "Correct!", questionEl, resultStyling,)
 }
 
 function showIncorrectResult() {
-  addElement(
-    "h6",
-    "Incorrect...",
-    questionEl,
-    "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;",
-  )
+  addElement("h6", "Incorrect...", questionEl, resultStyling,)
 }
 
 
