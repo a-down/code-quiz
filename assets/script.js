@@ -23,6 +23,12 @@ function addElement(element, textContent, appendLocation, styling) {
   appendLocation.appendChild(newEl);
 }
 
+// function to remove elements from the DOM
+function removeElement(element) {
+  var removedElement = document.querySelector(element)
+  removedElement.remove();
+}
+
 
 // add text for page greeting
 var introTitle = addElement(
@@ -47,8 +53,6 @@ addElement(
   mainEl,
   buttonStyling,
 )
-
-introTitle.remove();
 
 
 // remove previous elements
