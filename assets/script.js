@@ -9,25 +9,25 @@ var buttonStyling = "width: 100px; height: 25px; background-color: #F08080; bord
 var questionBank = [
   {
     question: "What coding language creates the visual components of a webpage?",
-    optionA: "CSS",
-    optionB: "HTML",
-    optionC: "JavaScript",
-    optionD: "Git",
-    correctAnswer: "CSS",
+    optionA: "A. CSS",
+    optionB: "B. HTML",
+    optionC: "C. JavaScript",
+    optionD: "D. Git",
+    correctAnswer: "A. CSS",
   },
   {
     question: "What tool allows developers to check their code with console logs?",
-    optionA: "VS Code",
-    optionB: "GitHub",
-    optionC: "Developer Console",
-    optionD: "Terminal",
-    correctAnswer: "Developer Console",
+    optionA: "A. VS Code",
+    optionB: "B. GitHub",
+    optionC: "C. Developer Console",
+    optionD: "D. Terminal",
+    correctAnswer: "C. Developer Console",
   }
 ]
 
 
 
-function askAQuestion() {
+function addQuestion() {
   addElement(
     "h3",
     questionBank[i].question,
@@ -36,37 +36,47 @@ function askAQuestion() {
   )
   addElement(
     "p",
-    "A. " + questionBank[i].optionA,
+    questionBank[i].optionA,
     mainEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
   addElement(
     "p",
-    "B. " + questionBank[i].optionB,
+    questionBank[i].optionB,
     mainEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
   addElement(
     "p",
-    "C. " + questionBank[i].optionC,
+    questionBank[i].optionC,
     mainEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
   addElement(
     "p",
-    "D. " + questionBank[i].optionD,
+    questionBank[i].optionD,
     mainEl,
     "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 20px auto 5%;",
   )
-  i ++;
 }
 
+mainEl.addEventListener("click", function(click) {
+  var element = click.target;
+  var correct = questionBank[i].correctAnswer;
+
+  if (element.textContent == correct) {
+    console.log("hooray!")
+  }
+  
+  // if (element === questionBank[i].correctAnswer) {
+  //   console.log("hooray!");
+  // }
+})
 
 
 
 
-
-
+// i++  ?????????
 
 
 // functions to be called throughout
@@ -124,10 +134,9 @@ function removeIntroElements() {
 // remove intro elements
 startButton.addEventListener("click", function() {
   removeIntroElements();
-  askAQuestion();
+  addQuestion();
 }
 )
-
 
 
 
