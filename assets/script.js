@@ -125,8 +125,26 @@ function showScore() {
     "p",
     "Your score: " + score,
     questionEl,
-    "margin: 30px 30% auto 30%; background-color: white; text-align: center; border: 3px solid #F08080; border-radius: 5%;"
+    "margin: 10px 30% auto 30%; background-color: white; text-align: center; border: 3px solid #F08080; border-radius: 5%;"
   );
+}
+
+function showCorrectResult() {
+  addElement(
+    "h6",
+    "Correct!",
+    questionEl,
+    "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;",
+  )
+}
+
+function showIncorrectResult() {
+  addElement(
+    "h6",
+    "Incorrect...",
+    questionEl,
+    "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;",
+  )
 }
 
 
@@ -145,10 +163,12 @@ questionEl.addEventListener("click", function(click) {
     console.log("good");
     score++;
     console.log("score:" + score);
+    showCorrectResult();
     showScore();
   } else {
     console.log("bad");
     console.log("score:" + score);
+    showIncorrectResult();
     showScore();
 }
 })
