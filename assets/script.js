@@ -120,6 +120,16 @@ function addQuestion() {
 }
 }
 
+function showScore() {
+  addElement(
+    "p",
+    "Your score: " + score,
+    questionEl,
+    "margin: 30px 30% auto 30%; background-color: white; text-align: center; border: 3px solid #F08080; border-radius: 5%;"
+  );
+}
+
+
 // when you click on your choice, this functions determines if you get a point or not
 questionEl.addEventListener("click", function(click) {
   var element = click.target;
@@ -129,14 +139,17 @@ questionEl.addEventListener("click", function(click) {
   // it loops back to load the next question
   addQuestion();
 
+
   // scoring happens as the next question loads
   if (element.textContent == correct) {
     console.log("good");
     score++;
     console.log("score:" + score);
+    showScore();
   } else {
     console.log("bad");
     console.log("score:" + score);
+    showScore();
 }
 })
 
