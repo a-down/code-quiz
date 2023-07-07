@@ -4,8 +4,10 @@ score = 0;
 const mainEl = document.querySelector("main");
 const introEl = document.querySelector(".intro-div");
 const questionEl = document.querySelector(".question-div");
+const saveEl = document.querySelector(".save-div");
+let userInitials
 
-// styling variable
+// styling variables
 const multipleChoiceStyling = "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 40px auto 5%;";
 const buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;";
 const resultStyling = "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;";
@@ -86,11 +88,11 @@ startButton.addEventListener("click", function() {
 
 // create the elements for the quiz questions
 function addQuestion() {
+  if (i === questionBank.length) {
+    return
+  } else {
   console.log("i:"+ i);
   console.log("length:" + questionBank.length);
-  if (i === questionBank.length) {
-    console.log("out of questions");        // THIS IS WHERE YOU TRIGGER PULLING UP THE NEXT PAGE
-  } else {
   addElement(
     "h3",
     questionBank[i].question,
@@ -101,7 +103,6 @@ function addQuestion() {
   addElement("p", questionBank[i].optionB, questionEl, multipleChoiceStyling,)
   addElement("p", questionBank[i].optionC, questionEl, multipleChoiceStyling,)
   addElement("p", questionBank[i].optionD, questionEl, multipleChoiceStyling,)
-}
 }
 
 function showScore() {
@@ -124,13 +125,15 @@ function showIncorrectResult() {
 
 // when you click on your choice, this functions determines if you get a point or not
 questionEl.addEventListener("click", function(click) {
+  if (i === questionBank.length) {
+    return
+  } else {
   var element = click.target;
   var correct = questionBank[i].correctAnswer;
   i++;
   questionEl.textContent = "";
   // it loops back to load the next question
   addQuestion();
-
 
   // scoring happens as the next question loads
   if (element.textContent == correct) {
@@ -139,19 +142,64 @@ questionEl.addEventListener("click", function(click) {
     console.log("score:" + score);
     showCorrectResult();
     showScore();
+    saveScore();
   } else {
     console.log("bad");
     console.log("score:" + score);
     showIncorrectResult();
     showScore();
+    saveScore();
+}}})
+
+// this loads the page where you enter your initials and the score is saved to the local storage.
+function saveScore() {
+  if (i === questionBank.length) {
+  questionEl.textContent = "";
+  console.log("no more");
+  addElement(
+    "form",
+    "",
+    saveEl,
+    "text-align: center; margin-top: 20%;",
+  )
+  var submitForm = document.querySelector("form");
+  addElement(
+    "label",
+    "Enter your initials below to save your score!",
+    submitForm,
+    "color: black; font-weight: 600;",
+  )
+  addElement(
+    "input",
+    "Enter initials here.",
+    submitForm,
+    "width: 50%; margin: auto 25% auto 25%;",
+  )
+  addElement(
+    "button",
+    "Save score!",
+    submitForm,
+    buttonStyling,
+  )
+  addElement(
+    "p",
+    "Your score: " + score,
+    saveEl,
+    "margin: 25px 30% auto 30%; background-color: white; text-align: center; border: 3px solid #F08080; border-radius: 5%;",
+  )
+  createSaveButton();
+}}}
+
+function createSaveButton() {
+  var saveButton = document.querySelector(".save-div button");
+  var initialsInput = document.querySelector(".save-div input");
+
+  saveButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    console.log(initialsInput.value);
+    userInitials = initialsInput.value;
+  })
 }
-})
-
-
-
-
-
-
 
 
 
