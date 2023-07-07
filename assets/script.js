@@ -5,6 +5,7 @@ const mainEl = document.querySelector("main");
 const introEl = document.querySelector(".intro-div");
 const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
+const scoresEl = document.querySelector(".scores-div")
 let displayTime = document.querySelector(".timer");
 let timeLeft = 10;
 let userInitials
@@ -128,7 +129,7 @@ startButton.addEventListener("click", function() {
 
 // create the elements for the quiz questions
 function addQuestion() {
-  if (i === questionBank.length) {
+  if (i === questionBank.length || timeLeft <= 0) {
     return
   } else {
   console.log("i:"+ i);
@@ -201,7 +202,7 @@ questionEl.addEventListener("click", function(click) {
 
 // this loads the page where you enter your initials and the score is saved to the local storage.
 function saveScore() {
-  if (i === questionBank.length || timeLeft === 0) {
+  if (i === questionBank.length || timeLeft <= 0) {
   questionEl.textContent = "";
   console.log("no more");
   addElement(
@@ -271,9 +272,14 @@ function saveUserScore() {
   
   // save the JSON in local storage
   localStorage.setItem("userScore", scoreStringify);
+  showHighScores();
 }
 
-
+function showHighScores() {
+  mainEl.textContent = "";
+  questionEl.textContent = "";
+  saveEl.textContent= "";
+}
 
 
 
