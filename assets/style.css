@@ -24,7 +24,7 @@ header {
 }
 
 nav {
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 50%;
 }
 
@@ -52,4 +52,12 @@ main {
   font-weight: bold;
   text-align: center;
   margin-top: 13px;
+}
+
+.scores-div {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  visibility: hidden;
+  margin: 10%;
 }

@@ -5,12 +5,12 @@ const mainEl = document.querySelector("main");
 const introEl = document.querySelector(".intro-div");
 const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
-const scoresEl = document.querySelector(".scores-div")
+const scoresEl = document.querySelector(".scores-div");
 let displayTime = document.querySelector(".timer");
 let timeLeft = 10;
 let userInitials
 let scoreStringify
-let scoreFromStorage
+let scoresFromStorage
 let userScoreObject
 var previousScores
 var scoreHistory
@@ -47,6 +47,7 @@ var questionBank = [
 // function to get previous scores
 function getPreviousScores() {
   previousScores = JSON.parse(localStorage.getItem("userScore"));
+  console.log("prev" + previousScores);
   scoreHistory = []
   if (previousScores !== null) {
     scoreHistory.push(previousScores);
@@ -272,13 +273,35 @@ function saveUserScore() {
   
   // save the JSON in local storage
   localStorage.setItem("userScore", scoreStringify);
-  showHighScores();
+  showRecentScores();
 }
 
-function showHighScores() {
-  mainEl.textContent = "";
+function showRecentScores() {
+  introEl.textContent = "";
   questionEl.textContent = "";
-  saveEl.textContent= "";
+  saveEl.textContent = "";
+  scoresEl.style.visibility = "visible";
+  scoresFromStorage = localStorage.getItem("userScore");
+  console.log(scoresFromStorage)
+
+  addElement(
+    "h2", 
+    "Recent Scores", 
+    scoresEl,
+    "display: visible; font-size: 24px; font-weight: 700; text-align: center;",
+    );
+  addElement(
+    "p",
+    scoreHistory[0].name + ": " + scoreHistory[0].score,
+    scoresEl,
+    multipleChoiceStyling,
+  )
+  addElement(
+    "p",
+    "scores",
+    scoresEl,
+    multipleChoiceStyling,
+  )
 }
 
 
