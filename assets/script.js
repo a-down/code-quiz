@@ -8,7 +8,7 @@ const saveEl = document.querySelector(".save-div");
 const scoresEl = document.querySelector(".scores-div");
 let displayTime = document.querySelector(".timer");
 let highScoresButton = document.querySelector(".highscores");
-let timeLeft = 10;
+let timeLeft = 90;
 let userInitials
 let scoreStringify
 let scoresFromStorage
@@ -45,7 +45,7 @@ var questionBank = [
 ]
 
 
-// function to get previous scores                                               // HIGHSCORES GETTER
+// function to get previous scores from local storage before starting the game (new scores are pushed into scoreHistory array)
 function getPreviousScores() {
   scoreHistory = JSON.parse(localStorage.getItem("userScore"));
   console.log("prev " + scoreHistory);
@@ -103,6 +103,7 @@ var startButton = document.querySelector(".intro-div button");
 
 // starts the timer when the start button is clicked
 function startTimer(){
+  displayTime.textContent = "90";
   timerInterval = setInterval(function() {
     timeLeft--;
     displayTime.textContent = timeLeft + "";
@@ -123,6 +124,7 @@ startButton.addEventListener("click", function() {
   startTimer();
 }
 )
+
 
 // create the elements for the quiz questions
 function addQuestion() {
@@ -189,10 +191,13 @@ questionEl.addEventListener("click", function(click) {
     saveScore();
   } else {
     console.log("bad");
-    timeLeft = timeLeft - 10;
+    timeLeft = timeLeft - 15;
     console.log("score:" + score);
     showIncorrectResult();
     showScore();
+    if (i === questionBank.length) {
+      saveScore();
+    }
 }}});
 
 
@@ -254,6 +259,7 @@ function createSaveButton() {
   }
 }
 
+
 // when the save button is clicked, the user score is saved to local storage
 function saveUserScore() {
   userScoreObject = {
@@ -273,6 +279,7 @@ function saveUserScore() {
 }
 
 
+// shows previous scores and gives the option to reset scores
 function showRecentScores() {
   introEl.textContent = "";
   questionEl.textContent = "";
@@ -315,11 +322,13 @@ function showRecentScores() {
       scoresEl,
       multipleChoiceStyling,
     )
-  } 
-
-  createResetButton();
+  } else {
+    createResetButton();
+  }
 }
 
+
+// creates the Reset Button for the previous scores page (called above)
 function createResetButton() {
   var resetButton = document.querySelector(".scores-div button");
 
@@ -331,32 +340,6 @@ function createResetButton() {
     showRecentScores();
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
