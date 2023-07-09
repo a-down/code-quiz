@@ -24,4 +24,4 @@ The goal was to create a JavaScript Coding Quiz from scratch. The requirements w
 
 ---
 
-[Link to Deployed Version](https://a-down.github.io/password-generator/)
+[Link to Deployed Version](https://a-down.github.io/code-quiz/)
