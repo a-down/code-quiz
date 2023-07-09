@@ -16,7 +16,7 @@ The goal was to create a JavaScript Coding Quiz from scratch. The requirements w
 
 ---
 
-![Visual of Deployed Webpage](./assets/images/code-quiz-visual.png))
+![Visual of Deployed Webpage](./assets/images/code-quiz-visual.png)
 
 <br>
 
