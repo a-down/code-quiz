@@ -47,18 +47,13 @@ var questionBank = [
 
 
 // function to get previous scores                                               // HIGHSCORES GETTER
-// function getPreviousScores() {
-//   previousScores = JSON.parse(localStorage.getItem("userScore"));
-//   console.log("prev" + previousScores);
-//   scoreHistory = []
-//   if (previousScores !== null) {
-//     scoreHistory.push(previousScores);
-//     console.log(scoreHistory);
-//   } else {
-//   console.log(scoreHistory);
-//   }
-// }
-// getPreviousScores();
+function getPreviousScores() {
+  scoreHistory = JSON.parse(localStorage.getItem("userScore"));
+  console.log("prev " + scoreHistory);
+  if (scoreHistory === null) {
+    scoreHistory = [];
+}}
+getPreviousScores();
 
 
 // function to add elements to the DOM
@@ -212,7 +207,7 @@ function saveScore() {
     "form",
     "",
     saveEl,
-    "text-align: center; margin-top: 20%;",
+    "text-align: center; margin-top: 20px;",
   )
   var submitForm = document.querySelector("form");
   addElement(
@@ -262,66 +257,52 @@ function createSaveButton() {
 }
 
 // when the save button is clicked, the user score is saved to local storage
-// function saveUserScore() {
-//   userScoreObject = {
-//     name: userInitials,
-//     score: score,
-//   }
+function saveUserScore() {
+  userScoreObject = {
+    name: userInitials,
+    score: score,
+  }
 
-//   scoreHistory.push(userScoreObject);
+  scoreHistory.push(userScoreObject);
+  console.log(scoreHistory);
 
-//   scoreStringify = JSON.stringify(scoreHistory);
-//   console.log(scoreStringify);
+  scoreStringify = JSON.stringify(scoreHistory);
+  console.log(scoreStringify);
   
-//   // save the JSON in local storage
-//   localStorage.setItem("userScore", scoreStringify);
-//   showRecentScores();
-// }
+  // save the JSON in local storage
+  localStorage.setItem("userScore", scoreStringify);
+  showRecentScores();
+}
 
 
+function showRecentScores() {
+  introEl.textContent = "";
+  questionEl.textContent = "";
+  saveEl.textContent = "";
+  scoresEl.style.visibility = "visible";
+  scoresFromStorage = localStorage.getItem("userScore");
+  var parsedScoresFromStorage = JSON.parse(scoresFromStorage)
+  console.log(parsedScoresFromStorage);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function showRecentScores() {
-//   introEl.textContent = "";
-//   questionEl.textContent = "";
-//   saveEl.textContent = "";
-//   scoresEl.style.visibility = "visible";
-//   scoresFromStorage = localStorage.getItem("userScore");
-//   console.log(scoresFromStorage)
-
-//   addElement(
-//     "h2", 
-//     "Recent Scores", 
-//     scoresEl,
-//     "display: visible; font-size: 24px; font-weight: 700; text-align: center;",
-//     );
-//   addElement(
-//     "p",
-//     scoreHistory[0].name + ": " + scoreHistory[0].score,
-//     scoresEl,
-//     multipleChoiceStyling,
-//   )
-//   addElement(
-//     "p",
-//     "scores",
-//     scoresEl,
-//     multipleChoiceStyling,
-//   )
-// }
+  addElement(
+    "h2", 
+    "Recent Scores", 
+    scoresEl,
+    "display: visible; font-size: 24px; font-weight: 700; text-align: center;",
+    );
+  addElement(
+    "p",
+    parsedScoresFromStorage[0].name + ": " + parsedScoresFromStorage[0].score,
+    scoresEl,
+    multipleChoiceStyling,
+  )
+  addElement(
+    "p",
+    parsedScoresFromStorage[1].name + ": " + parsedScoresFromStorage[1].score,
+    scoresEl,
+    multipleChoiceStyling,
+  )
+}
 
 
 
