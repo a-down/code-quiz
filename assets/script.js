@@ -27,12 +27,12 @@ const resultStyling = "font-size: 18px; font-weight: 700; text-align: center; co
 // global objects (questions) - test this with 2 questions, so it is quicker to run through the whole thing!
 var questionBank = [
   {
-    question: "What coding language creates the visual components of a webpage?",
+    question: "What coding language brings a webpage to life?",
     optionA: "A. CSS",
     optionB: "B. HTML",
     optionC: "C. JavaScript",
     optionD: "D. Git",
-    correctAnswer: "A. CSS",
+    correctAnswer: "C. JavaScript",
   },
   {
     question: "What tool allows developers to check their code with console logs?",
@@ -41,7 +41,71 @@ var questionBank = [
     optionC: "C. Developer Console",
     optionD: "D. Terminal",
     correctAnswer: "C. Developer Console",
-  }
+  },
+  {
+    question: "In JavaScript, what data format requires you to 'stringify'?",
+    optionA: "A. JSON",
+    optionB: "B. Array",
+    optionC: "C. Object",
+    optionD: "D. Function",
+    correctAnswer: "A. JSON",
+  },
+  {
+    question: "Which variable type keeps its value throughout the code?",
+    optionA: "A. let",
+    optionB: "B. var",
+    optionC: "C. if",
+    optionD: "D. const",
+    correctAnswer: "D. const",
+  },
+  {
+    question: "What key on the keyboard allows you to indent your code to improve readability?",
+    optionA: "A. Enter",
+    optionB: "B. Shift",
+    optionC: "C. Tab",
+    optionD: "D. Shift+Opt+Down",
+    correctAnswer: "C. Tab",
+  },
+  {
+    question: "Where in the HTML should you link your JavaScript file?",
+    optionA: "A. At the bottom of the <body>.",
+    optionB: "B. In the <head>.",
+    optionC: "C. At the top of the <body>.",
+    optionD: "D. After the </html>",
+    correctAnswer: "A. At the bottom of the <body>.",
+  },
+  {
+    question: "jQuery commands can be used in tandem with what coding language?",
+    optionA: "A. CSS",
+    optionB: "B. HTML",
+    optionC: "C. JavaScript",
+    optionD: "D. Git",
+    correctAnswer: "C. JavaScript",
+  },
+  {
+    question: "The first thing you should do when you create a new JavaScript file is...",
+    optionA: "A. Retype your HTML data",
+    optionB: "B. Think about your task and break it down into smaller tasks",
+    optionC: "C. Copy and paste functions from your last project",
+    optionD: "D. Enter your personal contact information so anyone who sees your repo can ask you questions about it",
+    correctAnswer: "B. Think about your task and break it down into smaller tasks",
+  },
+  {
+    question: "What should you include in your code to make it easier to understand for yourself and future developers?",
+    optionA: "A. pictures",
+    optionB: "B. links to other people's JavaScript files",
+    optionC: "C. riddles about the meaning of different sections",
+    optionD: "D. comments",
+    correctAnswer: "D. comments",
+  },
+  {
+    question: "The best way to get better at coding is...",
+    optionA: "A. Sleeping!",
+    optionB: "B. Reading StackOverflow",
+    optionC: "C. Coding!",
+    optionD: "D. Coping professional code line for line",
+    correctAnswer: "C. Coding!",
+  },
 ]
 
 
@@ -84,7 +148,7 @@ addElement(
 // create intro paragraph
 addElement(
   "p",
-  "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nostrum placeat, quae magnam saepe, excepturi possimus assumenda quisquam eligendi quod voluptate. Libero, cupiditate a porro quia eius officia et labore!",
+  'Use this page to test your knowledge of JavaScript! You have 90 seconds to answer 10 questions. If you answer a question incorrectly, 15 seconds will be subtracted from your time. At the end, you can save your score to compare it to attempts made on your machine. Press "start" to begin!',
   introEl, 
   "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
 
