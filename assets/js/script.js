@@ -21,7 +21,7 @@ var timerInterval
 // styling variables
 const multipleChoiceStyling = "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 40px auto 5%;";
 const buttonStyling = "width: 100px; height: 25px; background-color: #F08080; border: 0px; border-radius: 5%; display: block; margin: 25px auto auto auto;";
-const resultStyling = "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px;";
+const resultStyling = "font-size: 18px; font-weight: 700; text-align: center; color: #F08080; margin: 10px; padding-top: 10px";
 
 
 // global objects (questions) - test this with 2 questions, so it is quicker to run through the whole thing!
@@ -150,7 +150,7 @@ addElement(
   "p",
   'Use this page to test your knowledge of JavaScript! You have 90 seconds to answer 10 questions. If you answer a question incorrectly, 15 seconds will be subtracted from your time. At the end, you can save your score to compare it to attempts made on your machine. Press "start" to begin!',
   introEl, 
-  "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%;",)
+  "font-size: 16px; font-weight: 500; text-align: center; margin: auto 5% auto 5%; line-height: 24px; padding-top: 20px",)
 
 // create button to start quiz
 addElement(
@@ -358,7 +358,7 @@ function showRecentScores() {
     "h2", 
     "Previous Scores", 
     scoresEl,
-    "display: visible; font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 0;",
+    "display: visible; font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 0; padding-top: 20px;",
   )
 
   addElement(
@@ -369,12 +369,11 @@ function showRecentScores() {
   );
 
   for (let x = 0; x < scoreHistory.length; x++) {
-
     addElement(
       "p",
       parsedScoresFromStorage[x].name + ": " + parsedScoresFromStorage[x].score,
       scoresEl,
-      multipleChoiceStyling,
+      multipleChoiceStyling + "background-color: #D3D3D3; padding: 5px; padding-left: 15px; border-radius: 5px; font-weight: 700;",
     )
   }
 

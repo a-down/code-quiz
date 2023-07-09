@@ -7,6 +7,10 @@ html {
   font-family: Arial, Helvetica, sans-serif
 }
 
+h1 {
+  font-size: 36px;
+}
+
 header {
   display: flex;
   height: 80px;
