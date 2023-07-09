@@ -7,7 +7,7 @@ const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
 const scoresEl = document.querySelector(".scores-div");
 let displayTime = document.querySelector(".timer");
-let highScoresLink = document.querySelector("header p");
+let highScoresButton = document.querySelector(".highscores");
 let timeLeft = 10;
 let userInitials
 let scoreStringify
@@ -17,7 +17,6 @@ var previousScores
 var scoreHistory
 var timerInterval
 
-// highScoresLink.addEventListener ("click", showRecentScores());                       // HIGHSCORES Link
 
 // styling variables
 const multipleChoiceStyling = "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 40px auto 5%;";
@@ -286,12 +285,20 @@ function showRecentScores() {
 
   addElement(
     "h2", 
-    "Recent Scores", 
+    "Previous Scores", 
     scoresEl,
-    "display: visible; font-size: 24px; font-weight: 700; text-align: center;",
-    );
+    "display: visible; font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 0;",
+  )
+
+  addElement(
+    "button",
+    "Reset Scores",
+    scoresEl,
+    buttonStyling,
+  );
 
   for (let x = 0; x < scoreHistory.length; x++) {
+
     addElement(
       "p",
       parsedScoresFromStorage[x].name + ": " + parsedScoresFromStorage[x].score,
@@ -299,11 +306,31 @@ function showRecentScores() {
       multipleChoiceStyling,
     )
   }
+
+  if (scoreHistory.length === 0) {
+    scoresEl.textContent = "";
+    addElement(
+      "p",
+      "No saved scores. Refresh the page to play and save a score!",
+      scoresEl,
+      multipleChoiceStyling,
+    )
+  } 
+
+  createResetButton();
 }
 
+function createResetButton() {
+  var resetButton = document.querySelector(".scores-div button");
 
-
-
+  resetButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    scoreHistory = [];
+    scoreStringifyReset = JSON.stringify(scoreHistory);
+    localStorage.setItem("userScore", scoreStringifyReset);
+    showRecentScores();
+  })
+}
 
 
 
