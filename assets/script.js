@@ -78,7 +78,7 @@ addElement(
   "h2", 
   "Welcome to the quiz!", 
   introEl,
-  "font-size: 24px; font-weight: 700; text-align: center;",
+  "font-size: 24px; font-weight: 700; text-align: center; padding-top: 20px;",
   );
 
 // create intro paragraph
@@ -137,7 +137,7 @@ function addQuestion() {
     "h3",
     questionBank[i].question,
     questionEl,
-    "font-size: 16px; font-weight: 600; text-align: left; margin: 20px 40px auto 5%;",
+    "font-size: 16px; font-weight: 600; text-align: left; margin: 20px 40px auto 5%; padding-top: 20px;",
   )
   addElement("p", questionBank[i].optionA, questionEl, multipleChoiceStyling,)
   addElement("p", questionBank[i].optionB, questionEl, multipleChoiceStyling,)
@@ -210,14 +210,14 @@ function saveScore() {
     "form",
     "",
     saveEl,
-    "text-align: center; margin-top: 20px;",
+    "text-align: center; margin-top: 20px; padding-top: 60px; margin: auto 30px auto 30px;",
   )
   var submitForm = document.querySelector("form");
   addElement(
     "label",
     "Enter your initials below to save your score!",
     submitForm,
-    "color: black; font-weight: 600;",
+    "color: black; font-weight: 600; padding-top: 20px;",
   )
   addElement(
     "input",
