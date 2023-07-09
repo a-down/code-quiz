@@ -7,6 +7,7 @@ const questionEl = document.querySelector(".question-div");
 const saveEl = document.querySelector(".save-div");
 const scoresEl = document.querySelector(".scores-div");
 let displayTime = document.querySelector(".timer");
+let highScoresLink = document.querySelector("header p");
 let timeLeft = 10;
 let userInitials
 let scoreStringify
@@ -16,6 +17,7 @@ var previousScores
 var scoreHistory
 var timerInterval
 
+// highScoresLink.addEventListener ("click", showRecentScores());                       // HIGHSCORES Link
 
 // styling variables
 const multipleChoiceStyling = "font-size: 16px; font-weight: 400; text-align: left; margin: 20px 40px auto 5%;";
@@ -44,19 +46,19 @@ var questionBank = [
 ]
 
 
-// function to get previous scores
-function getPreviousScores() {
-  previousScores = JSON.parse(localStorage.getItem("userScore"));
-  console.log("prev" + previousScores);
-  scoreHistory = []
-  if (previousScores !== null) {
-    scoreHistory.push(previousScores);
-    console.log(scoreHistory);
-  } else {
-  console.log(scoreHistory);
-  }
-}
-getPreviousScores();
+// function to get previous scores                                               // HIGHSCORES GETTER
+// function getPreviousScores() {
+//   previousScores = JSON.parse(localStorage.getItem("userScore"));
+//   console.log("prev" + previousScores);
+//   scoreHistory = []
+//   if (previousScores !== null) {
+//     scoreHistory.push(previousScores);
+//     console.log(scoreHistory);
+//   } else {
+//   console.log(scoreHistory);
+//   }
+// }
+// getPreviousScores();
 
 
 // function to add elements to the DOM
@@ -260,49 +262,93 @@ function createSaveButton() {
 }
 
 // when the save button is clicked, the user score is saved to local storage
-function saveUserScore() {
-  userScoreObject = {
-    name: userInitials,
-    score: score,
-  }
+// function saveUserScore() {
+//   userScoreObject = {
+//     name: userInitials,
+//     score: score,
+//   }
 
-  scoreHistory.push(userScoreObject);
+//   scoreHistory.push(userScoreObject);
 
-  scoreStringify = JSON.stringify(scoreHistory);
-  console.log(scoreStringify);
+//   scoreStringify = JSON.stringify(scoreHistory);
+//   console.log(scoreStringify);
   
-  // save the JSON in local storage
-  localStorage.setItem("userScore", scoreStringify);
-  showRecentScores();
-}
+//   // save the JSON in local storage
+//   localStorage.setItem("userScore", scoreStringify);
+//   showRecentScores();
+// }
 
-function showRecentScores() {
-  introEl.textContent = "";
-  questionEl.textContent = "";
-  saveEl.textContent = "";
-  scoresEl.style.visibility = "visible";
-  scoresFromStorage = localStorage.getItem("userScore");
-  console.log(scoresFromStorage)
 
-  addElement(
-    "h2", 
-    "Recent Scores", 
-    scoresEl,
-    "display: visible; font-size: 24px; font-weight: 700; text-align: center;",
-    );
-  addElement(
-    "p",
-    scoreHistory[0].name + ": " + scoreHistory[0].score,
-    scoresEl,
-    multipleChoiceStyling,
-  )
-  addElement(
-    "p",
-    "scores",
-    scoresEl,
-    multipleChoiceStyling,
-  )
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function showRecentScores() {
+//   introEl.textContent = "";
+//   questionEl.textContent = "";
+//   saveEl.textContent = "";
+//   scoresEl.style.visibility = "visible";
+//   scoresFromStorage = localStorage.getItem("userScore");
+//   console.log(scoresFromStorage)
+
+//   addElement(
+//     "h2", 
+//     "Recent Scores", 
+//     scoresEl,
+//     "display: visible; font-size: 24px; font-weight: 700; text-align: center;",
+//     );
+//   addElement(
+//     "p",
+//     scoreHistory[0].name + ": " + scoreHistory[0].score,
+//     scoresEl,
+//     multipleChoiceStyling,
+//   )
+//   addElement(
+//     "p",
+//     "scores",
+//     scoresEl,
+//     multipleChoiceStyling,
+//   )
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
