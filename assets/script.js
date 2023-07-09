@@ -194,7 +194,6 @@ questionEl.addEventListener("click", function(click) {
     console.log("score:" + score);
     showIncorrectResult();
     showScore();
-    saveScore();
 }}});
 
 
@@ -279,6 +278,7 @@ function showRecentScores() {
   introEl.textContent = "";
   questionEl.textContent = "";
   saveEl.textContent = "";
+  mainEl.setAttribute("style", "border: none;")
   scoresEl.style.visibility = "visible";
   scoresFromStorage = localStorage.getItem("userScore");
   var parsedScoresFromStorage = JSON.parse(scoresFromStorage)
@@ -290,18 +290,15 @@ function showRecentScores() {
     scoresEl,
     "display: visible; font-size: 24px; font-weight: 700; text-align: center;",
     );
-  addElement(
-    "p",
-    parsedScoresFromStorage[0].name + ": " + parsedScoresFromStorage[0].score,
-    scoresEl,
-    multipleChoiceStyling,
-  )
-  addElement(
-    "p",
-    parsedScoresFromStorage[1].name + ": " + parsedScoresFromStorage[1].score,
-    scoresEl,
-    multipleChoiceStyling,
-  )
+
+  for (let x = 0; x < scoreHistory.length; x++) {
+    addElement(
+      "p",
+      parsedScoresFromStorage[x].name + ": " + parsedScoresFromStorage[x].score,
+      scoresEl,
+      multipleChoiceStyling,
+    )
+  }
 }
 
 
